@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cde282a8d045bf9d245fdcfaa7271b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QuestionnaireVersion: 1.3
   UserAnswers:
     Answers:
     - QuestionId: Competitiveness
@@ -19,7 +20,7 @@ MonoBehaviour:
       - Co-operative
     - QuestionId: Pace
       Answers:
-      - Medium
+      - Slow
     - QuestionId: Cheating
       Answers:
       - CheatingNotImportant
