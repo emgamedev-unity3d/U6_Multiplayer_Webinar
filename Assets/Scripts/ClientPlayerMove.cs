@@ -30,12 +30,18 @@ public class ClientPlayerMove : NetworkBehaviour
     [SerializeField]
     PlayerInput m_PlayerInput;
 
+    [SerializeField]
+    bool m_LockAndHideMouseCursor = false;
+
     RaycastHit[] m_HitColliders = new RaycastHit[4];
 
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if(m_LockAndHideMouseCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
         // ThirdPersonController & CharacterController are enabled only on owning clients. Ghost player objects have
         // these two components disabled, and will enable a CapsuleCollider. Per the CharacterController documentation:
