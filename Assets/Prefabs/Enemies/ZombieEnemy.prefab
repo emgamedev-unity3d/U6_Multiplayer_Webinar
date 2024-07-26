@@ -143,8 +143,9 @@ GameObject:
   - component: {fileID: 6879379921296096390}
   - component: {fileID: 7349651248182035848}
   - component: {fileID: 6834357935214580533}
+  - component: {fileID: 4969668574731974907}
   m_Layer: 0
-  m_Name: ZombieEnemySimple
+  m_Name: ZombieEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2801416977
+  GlobalObjectIdHash: 1461950846
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -280,6 +281,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4969668574731974907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6332301642665068665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390d7cf60ae24ce4988aaa892f2b53c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8468976036655466886
