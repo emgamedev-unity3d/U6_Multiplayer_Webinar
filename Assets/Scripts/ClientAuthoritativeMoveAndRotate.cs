@@ -6,11 +6,14 @@ public class ClientAuthoritativeMoveAndRotate : NetworkBehaviour
     public float rotationSpeed = 100.0f;
     public float movementSpeed = 5.0f;
 
+    private void Start()
+    {
+        if (!IsOwner)
+            enabled = false;
+    }
+
     void Update()
     {
-        if(!IsOwner)
-            return;
-
         var multiplier = movementSpeed * Time.deltaTime;
 
         // Rotation
