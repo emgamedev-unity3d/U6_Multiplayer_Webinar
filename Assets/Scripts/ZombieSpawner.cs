@@ -20,17 +20,10 @@ public class ZombieSpawner : NetworkBehaviour
 
     private int m_zombieSpawnCount = 0;
 
-    private const int MAX_ZOMBIES_TO_SPAWN = 7;
+    private const int MAX_ZOMBIES_TO_SPAWN = 10;
 
-    void Start()
+    private void Start()
     {
-        // only spawn enemies on the server or host
-        if (IsClient)
-        {
-            enabled = false;
-            return;
-        }
-
         NetworkManager.Singleton.OnServerStarted += OnNetworkManagerServerStarted;
     }
 
@@ -52,6 +45,13 @@ public class ZombieSpawner : NetworkBehaviour
 
     private void OnNetworkManagerServerStarted()
     {
+        // only spawn enemies on the server or host
+        if (!IsServer && !IsHost)
+        {
+            enabled = false;
+            return;
+        }
+
         Debug.Log("Server connected, game has started!");
 
         m_gameStarted = true;
@@ -69,6 +69,14 @@ public class ZombieSpawner : NetworkBehaviour
             Vector3.zero :
             m_spawnPositions[spawnPositionIndex].position;
 
+        m_zombieSpawnCount++;
+
         NetworkObjectSpawner.SpawnNewNetworkObject(m_zombiePrefab, spawnPosition);
+    }
+    public override void OnNetworkDespawn()
+    {
+        base.OnNetworkDespawn();
+
+        NetworkManager.Singleton.OnServerStarted -= OnNetworkManagerServerStarted;
     }
 }
