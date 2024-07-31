@@ -15,9 +15,6 @@ public class MoveNetworkObjectLinearlyInOneDirection : NetworkBehaviour
 
     private void Update()
     {
-        //if (!IsServer)
-        //    return;
-
         transform.Translate(speed * Time.deltaTime * direction);
     }
 }

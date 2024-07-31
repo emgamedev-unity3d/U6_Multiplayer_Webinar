@@ -64,7 +64,7 @@ public class ZombieSpawner : NetworkBehaviour
 
     private void SpawnZombie()
     {
-        int spawnPositionIndex = UnityEngine.Random.Range(0, m_spawnPositions.Count - 1);
+        int spawnPositionIndex = Random.Range(0, m_spawnPositions.Count - 1);
         var spawnPosition = m_spawnPositions.Count == 0 ?
             Vector3.zero :
             m_spawnPositions[spawnPositionIndex].position;
