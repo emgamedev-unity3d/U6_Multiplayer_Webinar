@@ -9,6 +9,8 @@ public class ZombieChasePlayer : NetworkBehaviour
 
     private Transform m_playerTransformToChase;
 
+    private Vector2 zombieToPlayerDirection = Vector2.zero;
+
     private void Start()
     {
         if (!IsOwner)
@@ -30,16 +32,24 @@ public class ZombieChasePlayer : NetworkBehaviour
         if (!NetworkObject.IsSpawned)
             return;
 
-        Vector3 zombieToPlayerDir = Vector3.Normalize(
-            m_playerTransformToChase.position - transform.position);
+        zombieToPlayerDirection.x =
+            m_playerTransformToChase.position.x - transform.position.x;
+
+        zombieToPlayerDirection.y =
+            m_playerTransformToChase.position.z - transform.position.z;
+
+        Vector2 zombieToPlayerNormalized = zombieToPlayerDirection.normalized;
 
         // Calculate the angle between the zombie's forward vector and the direction
         // vector pointing towards the player
-        float angle = Mathf.Atan2(zombieToPlayerDir.x, zombieToPlayerDir.z) * Mathf.Rad2Deg;
+        float angle =
+            Mathf.Atan2(zombieToPlayerNormalized.x, zombieToPlayerNormalized.y)
+            * Mathf.Rad2Deg;
 
         // Set the zombie's rotation around the Y-axis
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-        m_moveNetworkObjLinearly.direction = zombieToPlayerDir;
+        m_moveNetworkObjLinearly.direction.x = zombieToPlayerNormalized.x;
+        m_moveNetworkObjLinearly.direction.z = zombieToPlayerNormalized.y;
     }
 }
