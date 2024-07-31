@@ -1,17 +1,25 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetworkedDespawnOnTriggerCollision : NetworkBehaviour
+public class NetworkedDespawnOnTriggerCollision : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-         if(!IsOwner)
-            enabled = false;
+        Debug.Log($"{collision.gameObject.name} TRIGGERED with me!");
+
+        var zombieChasePlayer = GetComponent<ZombieChasePlayer>();
+        if (zombieChasePlayer == null)
+            return;
+
+        NetworkObjectDespawner.DespawnNetworkObject(
+            zombieChasePlayer.NetworkObject);
+
+        var networkObject = GetComponent<NetworkObject>();
+
+        NetworkObjectDespawner.DespawnNetworkObject(networkObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        NetworkObjectDespawner.DespawnNetworkObject(NetworkObject);
     }
 }

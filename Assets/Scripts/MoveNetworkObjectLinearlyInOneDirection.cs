@@ -7,14 +7,23 @@ public class MoveNetworkObjectLinearlyInOneDirection : NetworkBehaviour
 
     public float speed = 2f;
 
+    private Rigidbody rigidbody;
+
     private void Start()
     {
-        if(!IsOwner)
-            enabled = false;
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        transform.Translate(speed * Time.deltaTime * direction);
+        if (!IsOwner || !IsSpawned)
+            return;
+
+        var target = transform.position + speed * direction;
+
+        rigidbody.MovePosition(
+            Vector3.Lerp(transform.position, target, Time.deltaTime));
+
+        //transform.Translate(speed * Time.deltaTime * direction);
     }
 }

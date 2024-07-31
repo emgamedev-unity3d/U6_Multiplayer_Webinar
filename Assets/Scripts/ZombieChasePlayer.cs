@@ -14,12 +14,6 @@ public class ZombieChasePlayer : NetworkBehaviour
 
     private void Start()
     {
-        if (!IsOwner)
-        {
-            enabled = false;
-            return;
-        }
-
         // NOT EFFICIENT CODE, JUST FOR PRESENTATION PURPOSES ONLY
         var players = FindObjectsByType<ClientAuthoritativeMoveAndRotate>(
             FindObjectsInactive.Exclude,
@@ -32,7 +26,7 @@ public class ZombieChasePlayer : NetworkBehaviour
 
     private void Update()
     {
-        if (!NetworkObject.IsSpawned)
+        if (!IsOwner || !IsSpawned)
             return;
 
         UpdateZombieToPlayerDirection();
