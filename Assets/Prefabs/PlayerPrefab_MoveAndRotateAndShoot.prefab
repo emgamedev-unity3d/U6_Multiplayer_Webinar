@@ -125,6 +125,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 441465227731924742, guid: 528f4c5f95bff334ea5435e31152b276, type: 3}
+      propertyPath: SyncPositionY
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1610208707043744625, guid: 528f4c5f95bff334ea5435e31152b276, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -195,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7646061609371419748, guid: 528f4c5f95bff334ea5435e31152b276, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1780716545
+      value: 1388035184
       objectReference: {fileID: 0}
     - target: {fileID: 7646061609371419748, guid: 528f4c5f95bff334ea5435e31152b276, type: 3}
       propertyPath: InScenePlacedSourceGlobalObjectIdHash

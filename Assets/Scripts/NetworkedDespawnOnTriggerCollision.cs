@@ -6,8 +6,12 @@ public class NetworkedDespawnOnTriggerCollision : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log($"[{name}] Collided with {collision.gameObject.name}.");
-
-        NetworkObjectDespawner.DespawnNetworkObject(GetComponent<NetworkObject>());
+        var localNetworkObject = GetComponent<NetworkObject>();
+        if ( localNetworkObject != null && !localNetworkObject.NetworkManager.IsServer)
+        {
+            return;
+        }
+        NetworkObjectDespawner.DespawnNetworkObject(localNetworkObject);
         var zombieChasePlayer = collision.gameObject.GetComponent<ZombieChasePlayer>();
         if (zombieChasePlayer)
         {
