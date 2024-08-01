@@ -20,7 +20,7 @@ public class ZombieSpawner : NetworkBehaviour
 
     private int m_zombieSpawnCount = 0;
 
-    private const int MAX_ZOMBIES_TO_SPAWN = 10;
+    private const int MAX_ZOMBIES_TO_SPAWN = 60;
 
     private void Start()
     {
