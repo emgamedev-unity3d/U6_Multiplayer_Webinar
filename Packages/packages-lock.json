@@ -99,7 +99,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.multiplayer.center": {
-      "version": "1.0.0-pre.1",
+      "version": "1.0.0-pre.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -108,12 +108,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.multiplayer.center.quickstart": {
-      "version": "1.0.0-pre.1",
+      "version": "1.0.0-pre.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.uielements": "1.0.0",
-        "com.unity.multiplayer.center": "1.0.0-pre.1"
+        "com.unity.multiplayer.center": "1.0.0-pre.2"
       },
       "url": "https://packages.unity.com"
     },
@@ -154,7 +154,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.multiplayer.widgets": {
-      "version": "1.0.0-pre.1",
+      "version": "1.0.0-pre.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -332,7 +332,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.services.vivox": {
-      "version": "16.3.0",
+      "version": "16.4.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
