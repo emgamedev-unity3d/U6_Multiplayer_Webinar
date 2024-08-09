@@ -29,7 +29,8 @@ public class ZombieSpawner : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (!m_gameStarted || !CanStillSpawn())
+        // only spawn new zombies if you're the host device
+        if (!m_gameStarted || !CanStillSpawn() || !IsHost)
             return;
 
         m_currentTime += Time.deltaTime;
@@ -45,13 +46,6 @@ public class ZombieSpawner : NetworkBehaviour
 
     private void OnNetworkManagerServerStarted()
     {
-        // only spawn enemies on the server or host
-        if (!IsServer && !IsHost)
-        {
-            enabled = false;
-            return;
-        }
-
         Debug.Log("Server connected, game has started!");
 
         m_gameStarted = true;

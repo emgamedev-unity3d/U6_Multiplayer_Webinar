@@ -7,14 +7,11 @@ public class MoveNetworkObjectLinearlyInOneDirection : NetworkBehaviour
 
     public float speed = 2f;
 
-    private void Start()
-    {
-        if(!IsOwner)
-            enabled = false;
-    }
-
     private void Update()
     {
+        if (!IsOwner)
+            return;
+
         transform.Translate(speed * Time.deltaTime * direction);
     }
 }

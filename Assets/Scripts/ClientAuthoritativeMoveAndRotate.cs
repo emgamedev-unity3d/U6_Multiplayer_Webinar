@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class ClientAuthoritativeMoveAndRotate : NetworkBehaviour
 {
-    public float rotationSpeed = 100.0f;
-    public float movementSpeed = 5.0f;
+    [SerializeField]
+    private float rotationSpeed = 100f;
 
-    private void Start()
-    {
-        if (!IsOwner)
-            enabled = false;
-    }
+    [SerializeField]
+    private float movementSpeed = 5f;
 
     void Update()
     {
+        if (!IsOwner)
+            return;
+
         var multiplier = movementSpeed * Time.deltaTime;
 
         // Rotation
@@ -26,14 +26,16 @@ public class ClientAuthoritativeMoveAndRotate : NetworkBehaviour
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
         }
 
-        // Old input backends are enabled.
+        // Movement
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += -multiplier * transform.right;
+            //transform.position += -multiplier * transform.right;
+            transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.position += multiplier * transform.right;
+            //transform.position += multiplier * transform.right;
+            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
         }
         else if (Input.GetKey(KeyCode.W))
         {

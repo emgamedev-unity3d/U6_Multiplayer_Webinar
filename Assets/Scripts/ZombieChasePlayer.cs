@@ -12,13 +12,9 @@ public class ZombieChasePlayer : NetworkBehaviour
     private Vector2 zombieToPlayerDirection = Vector2.zero;
     private Vector2 zombieToPlayerNormalized = Vector2.zero;
 
-    private void Start()
+    public override void OnNetworkSpawn()
     {
-        if (!IsOwner)
-        {
-            enabled = false;
-            return;
-        }
+        base.OnNetworkSpawn();
 
         // NOT EFFICIENT CODE, JUST FOR PRESENTATION PURPOSES ONLY
         var players = FindObjectsByType<ClientAuthoritativeMoveAndRotate>(
@@ -32,7 +28,7 @@ public class ZombieChasePlayer : NetworkBehaviour
 
     private void Update()
     {
-        if (!NetworkObject.IsSpawned)
+        if (!IsOwner || !NetworkObject.IsSpawned)
             return;
 
         UpdateZombieToPlayerDirection();
