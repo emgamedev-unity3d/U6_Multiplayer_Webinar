@@ -5,7 +5,7 @@ public class NetworkedDespawnOnTriggerCollision : NetworkBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (!IsOwner)
+        if (!IsServer)
             return;
 
         NetworkObjectDespawner.DespawnNetworkObject(NetworkObject);

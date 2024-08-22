@@ -29,12 +29,10 @@ public class ClientAuthoritativeMoveAndRotate : NetworkBehaviour
         // Movement
         if (Input.GetKey(KeyCode.A))
         {
-            //transform.position += -multiplier * transform.right;
             transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            //transform.position += multiplier * transform.right;
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
         }
         else if (Input.GetKey(KeyCode.W))

@@ -39,8 +39,9 @@ public class ZombieSpawner : NetworkBehaviour
         {
             m_currentTime = 0f;
 
-            Debug.Log("Spawning Zombie!");
             SpawnZombie();
+
+            Debug.Log($"Spawned Zombie #{m_zombieSpawnCount}!");
         }
     }
 
