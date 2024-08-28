@@ -1,2 +1,2 @@
-# U6_Multiplayer_Test
+# Unity 6 Multiplayer Webinar Game Sample
  
