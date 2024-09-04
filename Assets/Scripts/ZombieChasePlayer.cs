@@ -1,3 +1,4 @@
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -16,15 +17,25 @@ public class ZombieChasePlayer : NetworkBehaviour
     {
         base.OnNetworkSpawn();
 
-        // NOT EFFICIENT CODE, JUST FOR PRESENTATION PURPOSES ONLY
-        var players = FindObjectsByType<ClientAuthoritativeMoveAndRotate>(
-            FindObjectsInactive.Exclude,
-            FindObjectsSortMode.None);
+        if (!IsServer)
+            return;
 
-        int randomIndex = Random.Range(0, players.Length - 1);
+        // NOTE: We're using the network manager's internal list of connected clients to choose
+        //  a random player to chase
+        var connectedClients = NetworkManager.Singleton.ConnectedClients.Values.ToArray();
 
-        m_playerTransformToChase = players[randomIndex].transform;
-    }
+        // Note: not using ".Length - 1" because the int Random.Range(...) function's max parameter
+        //  is exclusive. Ex.Random.Range(0,2) excludes 2, so max included value is 1
+        int randomIndex = Random.Range(0, connectedClients.Length);
+
+        var randomClientToChase = connectedClients[randomIndex];
+
+        // Note: This works because we've assigned a player prefab to the Network Manager object
+        // Fun fact: You can leave that field empty in the editor, and assign the
+        //  player object at runtime
+        m_playerTransformToChase = randomClientToChase.PlayerObject.transform;
+
+        Debug.Log($"Spawned Zombie is chasing client #{randomClientToChase.ClientId}!");}
 
     private void Update()
     {
