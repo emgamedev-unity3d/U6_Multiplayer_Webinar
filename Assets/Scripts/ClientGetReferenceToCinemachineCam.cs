@@ -10,7 +10,7 @@ public class ClientGetReferenceToCinemachineCam : NetworkBehaviour
 
         base.OnNetworkSpawn();
 
-        var cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
+        var cinemachineCamera = FindAnyObjectByType<CinemachineCamera>();
 
         if (cinemachineCamera == null)
             return;
