@@ -9,15 +9,13 @@ public class ShootNetworkedBullets : NetworkBehaviour
     [SerializeField]
     Transform m_bulletSpawnPoint;
 
-    private void Start()
-    {
-        // only spawn bullets on the server, since it will own them
-        if (!IsOwner)
-            enabled = false;
-    }
-
     private void Update()
     {
+        if (!IsOwner)
+            return;
+
+        // once we the press space bar, tell the server we'd like to
+        //   fire a bullet object
         if (Input.GetKeyDown(KeyCode.Space))
         {
             FireNewBulletServerRpc();

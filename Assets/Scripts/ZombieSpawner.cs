@@ -59,7 +59,11 @@ public class ZombieSpawner : NetworkBehaviour
 
     private void SpawnZombie()
     {
-        int spawnPositionIndex = Random.Range(0, m_spawnPositions.Count - 1);
+        // Note: We're not using ".Count - 1" because the int Random.Range(...)
+        //   function's max parameter is exclusive.
+        // 
+        // Ex.Random.Range(0,2) excludes 2, so max value included is 1
+        int spawnPositionIndex = Random.Range(0, m_spawnPositions.Count);
         var spawnPosition = m_spawnPositions.Count == 0 ?
             Vector3.zero :
             m_spawnPositions[spawnPositionIndex].position;

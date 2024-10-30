@@ -15,25 +15,41 @@ public class NetworkedHealth : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (!IsServer)
+        // we'd like for this code to run on both client and server side
+        m_initialHealthValue = m_health.Value;
+
+
+        if (!IsClient)
             return;
 
-        m_initialHealthValue = m_health.Value;
+        // We only need react to health value changed on the client-side
         m_health.OnValueChanged += OnHealthValueChanged;
     }
 
     public override void OnNetworkDespawn()
     {
-        if (!IsServer)
+        if (!IsClient)
             return;
 
+        // We only need un-subscribe from the health value
+        //   changed event on the client-side
         m_health.OnValueChanged -= OnHealthValueChanged;
+    }
+
+    private void OnHealthValueChanged(int previous, int current)
+    {
+        float healthRatio = (float)current / m_initialHealthValue;
+
+        m_healthImage.transform.localScale = new Vector3(healthRatio, 1f, 1f);
     }
 
     public void TakeDamage(int damage = 1)
     {
         if (!IsServer)
             return;
+
+        // The health data is owned by the server side, so we need to handle
+        //   the changes here
 
         int currentHealthValue = m_health.Value;
 
@@ -43,14 +59,8 @@ public class NetworkedHealth : NetworkBehaviour
 
         if(m_health.Value <= 0 )
         {
+            // Despawn the object, from the server side, once the health is 0
             NetworkObjectDespawner.DespawnNetworkObject(NetworkObject);
         }
-    }
-
-    private void OnHealthValueChanged(int previous, int current)
-    {
-        float healthRatio = (float)current / m_initialHealthValue;
-
-        m_healthImage.transform.localScale = new Vector3(healthRatio, 1f, 1f);
     }
 }
