@@ -14,23 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestionnaireVersion: 1.3
   UserAnswers:
-    Answers:
-    - QuestionId: Pace
-      Answers:
-      - Slow
-    - QuestionId: Cheating
-      Answers:
-      - CheatingNotImportant
-    - QuestionId: CostSensitivity
-      Answers:
-      - BestMargin
-    - QuestionId: NetcodeArchitecture
-      Answers:
-      - ClientServer
-    - QuestionId: PlayerCount
-      Answers:
-      - 4
-  Preset: 11
+    Answers: []
+  Preset: 0
   SelectedSolutions:
     SelectedHostingModel: 1
     SelectedNetcodeSolution: 1
