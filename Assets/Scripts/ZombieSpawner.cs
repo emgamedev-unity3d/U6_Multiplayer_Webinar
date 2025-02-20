@@ -78,4 +78,17 @@ public class ZombieSpawner : NetworkBehaviour
 
         NetworkManager.Singleton.OnServerStarted -= OnNetworkManagerServerStarted;
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (m_spawnPositions == null || m_spawnPositions.Count == 0)
+            return;
+
+        foreach(var spawnPosition in m_spawnPositions)
+        {
+            Gizmos.DrawWireSphere(spawnPosition.position, 1.5f);
+        }
+    }
+#endif
 }

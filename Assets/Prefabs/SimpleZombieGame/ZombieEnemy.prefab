@@ -340,7 +340,7 @@ Transform:
   m_GameObject: {fileID: 6332301642665068665}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -385,8 +385,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1461950846
+  GlobalObjectIdHash: 2801416977
   InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -394,6 +396,8 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &6879379921296096390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,9 +410,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 0
+  AuthorityMode: 0
+  TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
-  SyncPositionY: 0
+  SyncPositionY: 1
   SyncPositionZ: 1
   SyncRotAngleX: 0
   SyncRotAngleY: 1
@@ -423,6 +431,7 @@ MonoBehaviour:
   UseQuaternionCompression: 0
   UseHalfFloatPrecision: 0
   InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
 --- !u!54 &7349651248182035848
@@ -464,6 +473,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkRigidbodyBaseExpanded: 0
+  UseRigidBodyForMotion: 0
+  AutoUpdateKinematicState: 1
+  AutoSetKinematicOnDespawn: 1
 --- !u!114 &4969668574731974907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 390d7cf60ae24ce4988aaa892f2b53c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_moveNetworkObjLinearly: {fileID: 5396701396625820854}
 --- !u!114 &5396701396625820854
 MonoBehaviour:
@@ -489,7 +504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab3402b80184a64f961954c7f7bb90f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 1}
+  ShowTopMostFoldoutHeaderGroup: 1
+  direction: {x: 0, y: 0, z: 0}
   speed: 3
 --- !u!114 &1675978659607110001
 MonoBehaviour:
@@ -503,6 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4d227c6c5accf4e9d063dc19846689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_health:
     m_InternalValue: 3
   m_healthImage: {fileID: 3360842112014611257}
@@ -518,7 +535,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61ea75cd0c91434c9358596f3bb139d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   m_networkedHealth: {fileID: 1675978659607110001}
+  m_damageAmount: 1
 --- !u!1 &8468976036655466886
 GameObject:
   m_ObjectHideFlags: 0

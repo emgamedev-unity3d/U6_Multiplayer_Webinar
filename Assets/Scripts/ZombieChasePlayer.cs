@@ -68,14 +68,16 @@ public class ZombieChasePlayer : NetworkBehaviour
 
     private void UpdateZombieRotationToFacePlayer()
     {
-        // Calculate the angle between the zombie's forward vector and
-        // the direction vector pointing towards the player
-        float newYaxisAngle =
-            Mathf.Atan2(zombieToPlayerNormalized.x, zombieToPlayerNormalized.y)
-            * Mathf.Rad2Deg;
+        //// Calculate the angle between the zombie's forward vector and
+        //// the direction vector pointing towards the player
+        //float newYaxisAngle =
+        //    Mathf.Atan2(zombieToPlayerNormalized.x, zombieToPlayerNormalized.y)
+        //    * Mathf.Rad2Deg;
 
-        // Set the zombie's rotation around the Y-axis
-        transform.rotation = Quaternion.Euler(0f, newYaxisAngle, 0f);
+        //// Set the zombie's rotation around the Y-axis
+        //transform.rotation = Quaternion.Euler(0f, newYaxisAngle, 0f);
+
+        transform.LookAt(m_playerTransformToChase.position);
     }
 
     private void UpdateMoveLinearlyComponent()
@@ -83,4 +85,16 @@ public class ZombieChasePlayer : NetworkBehaviour
         m_moveNetworkObjLinearly.direction.x = zombieToPlayerNormalized.x;
         m_moveNetworkObjLinearly.direction.z = zombieToPlayerNormalized.y;
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        UnityEditor.Handles.DrawLine(
+            transform.position,
+            new Vector3(
+                transform.position.x + zombieToPlayerNormalized.x,
+                -0.5f,
+                transform.position.z + zombieToPlayerNormalized.y));
+    }
+#endif
 }

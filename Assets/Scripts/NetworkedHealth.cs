@@ -18,7 +18,6 @@ public class NetworkedHealth : NetworkBehaviour
         // we'd like for this code to run on both client and server side
         m_initialHealthValue = m_health.Value;
 
-
         if (!IsClient)
             return;
 
@@ -59,7 +58,7 @@ public class NetworkedHealth : NetworkBehaviour
 
         if(m_health.Value <= 0 )
         {
-            // Despawn the object, from the server side, once the health is 0
+            // Despawn the object, from the server side, once the health is 0 or less
             NetworkObjectDespawner.DespawnNetworkObject(NetworkObject);
         }
     }
