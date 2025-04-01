@@ -40,6 +40,7 @@ public class ZombieChasePlayer : NetworkBehaviour
         }
         else
         {
+            // disable nav mesh agent, because we're not the owner of the zombie
             m_NavMeshAgent.enabled = false;
         }
 
@@ -50,7 +51,6 @@ public class ZombieChasePlayer : NetworkBehaviour
         if (!IsOwner || !NetworkObject.IsSpawned)
             return;
 
-        m_NavMeshAgent.destination = m_playerTransformToChase.position; 
-
+        m_NavMeshAgent.destination = m_playerTransformToChase.position;
     }
 }
