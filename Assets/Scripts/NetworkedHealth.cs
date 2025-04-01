@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
@@ -10,6 +11,8 @@ public class NetworkedHealth : NetworkBehaviour
 
     [SerializeField]
     private Image m_healthImage;
+
+    public UnityEvent OnHealthDepleted = new();
 
     private int m_initialHealthValue;
 
@@ -44,12 +47,11 @@ public class NetworkedHealth : NetworkBehaviour
 
     public void TakeDamage(int damage = 1)
     {
-        if (!IsServer)
+        if (!IsOwner)
             return;
 
         // The health data is owned by the server side, so we need to handle
         //   the changes here
-
         int currentHealthValue = m_health.Value;
 
         m_health.Value = currentHealthValue - damage;
@@ -58,6 +60,8 @@ public class NetworkedHealth : NetworkBehaviour
 
         if(m_health.Value <= 0 )
         {
+            OnHealthDepleted.Invoke();
+
             // Despawn the object, from the server side, once the health is 0 or less
             NetworkObjectDespawner.DespawnNetworkObject(NetworkObject);
         }

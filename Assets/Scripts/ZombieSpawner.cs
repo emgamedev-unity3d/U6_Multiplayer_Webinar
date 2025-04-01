@@ -14,6 +14,9 @@ public class ZombieSpawner : NetworkBehaviour
     [SerializeField]
     private List<Transform> m_spawnPositions = new();
 
+    [SerializeField]
+    private ParticleSystem m_zombieSpawnFX;
+
     private bool m_gameStarted = false;
 
     private float m_currentTime = 0f;
@@ -71,7 +74,25 @@ public class ZombieSpawner : NetworkBehaviour
         m_zombieSpawnCount++;
 
         NetworkObjectSpawner.SpawnNewNetworkObject(m_zombiePrefab, spawnPosition);
+
+        PlaySpawnZombieParticleSystemRpc(spawnPositionIndex);
     }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void PlaySpawnZombieParticleSystemRpc(int spawnPositionIndex)
+    {
+        var zombieFxSpawnPositon = m_spawnPositions[spawnPositionIndex].position;
+
+        var zombieSpawnFX = Instantiate(
+            m_zombieSpawnFX,
+            zombieFxSpawnPositon,
+            Quaternion.identity);
+
+        // Note: NOT EFFICIENT CODE AT ALL, JUST FOR PRESENTATION PURPOSES.
+        //   Best method is to use object pooling for these objects
+        Destroy(zombieSpawnFX, 3f);
+    }
+
     public override void OnNetworkDespawn()
     {
         base.OnNetworkDespawn();
