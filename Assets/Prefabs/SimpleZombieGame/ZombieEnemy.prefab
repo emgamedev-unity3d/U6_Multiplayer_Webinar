@@ -321,9 +321,9 @@ GameObject:
   - component: {fileID: 7349651248182035848}
   - component: {fileID: 6834357935214580533}
   - component: {fileID: 4969668574731974907}
-  - component: {fileID: 5396701396625820854}
   - component: {fileID: 1675978659607110001}
   - component: {fileID: 7749739529884305802}
+  - component: {fileID: 6465630007656895264}
   m_Layer: 3
   m_Name: ZombieEnemy
   m_TagString: Enemy
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkTransformExpanded: 0
-  AuthorityMode: 0
+  AuthorityMode: 1
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
@@ -491,22 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  m_moveNetworkObjLinearly: {fileID: 5396701396625820854}
---- !u!114 &5396701396625820854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6332301642665068665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ab3402b80184a64f961954c7f7bb90f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  direction: {x: 0, y: 0, z: 0}
-  speed: 3
+  m_NavMeshAgent: {fileID: 6465630007656895264}
 --- !u!114 &1675978659607110001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,6 +523,28 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   m_networkedHealth: {fileID: 1675978659607110001}
   m_damageAmount: 1
+--- !u!195 &6465630007656895264
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6332301642665068665}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &8468976036655466886
 GameObject:
   m_ObjectHideFlags: 0
